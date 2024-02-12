@@ -55,23 +55,4 @@ public class VehicleDataProcessor implements DataProcessor {
         }
 
     }
-    @Override
-    public void write(String output, String fileName) throws IOException {
-        try {
-            File myObj = new File(fileName);
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            writer.write(output);
-            writer.close();
-
-
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
 }

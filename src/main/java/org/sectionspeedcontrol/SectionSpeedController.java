@@ -1,9 +1,8 @@
 package org.sectionspeedcontrol;
 
+import java.time.Duration;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Scanner;
 
 public class SectionSpeedController implements SpeedController{
     private double distance;
@@ -22,6 +21,10 @@ public class SectionSpeedController implements SpeedController{
         this.dataProcessor = new VehicleDataProcessor();
         this.vehicles = dataProcessor.read(data);
         //calculate average speed per vehicle
+        updateVehiclesAverageSpeed();
+    }
+
+    private void updateVehiclesAverageSpeed(){
         for (Vehicle vehicle:vehicles) {
             double averageSpeed = this.calculateVehicleAverageSpeed(vehicle);
             vehicle.setAverageSpeed(averageSpeed);
@@ -29,8 +32,9 @@ public class SectionSpeedController implements SpeedController{
     }
 
     private double calculateVehicleAverageSpeed(Vehicle vehicle) {
-        double timeInSector = vehicle.getEntryTime().until(vehicle.getExitTime(), ChronoUnit.SECONDS);
-        return this.distance/(timeInSector/3600);
+        Duration duration = Duration.between(vehicle.getEntryTime(), vehicle.getExitTime());
+        double durationInSeconds = (double) duration.getSeconds();
+        return this.distance/(durationInSeconds/3600);
     }
 
     @Override

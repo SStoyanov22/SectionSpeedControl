@@ -1,4 +1,4 @@
-package org.sectionspeedcontrol;
+    package org.sectionspeedcontrol;
 
 import java.time.LocalTime;
 import java.util.Scanner;

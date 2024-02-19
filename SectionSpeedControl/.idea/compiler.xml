@@ -7,8 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SectionSpeedControl" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SectionSpeedControl" target="19" />
+    </bytecodeTargetLevel>
   </component>
 </project>
